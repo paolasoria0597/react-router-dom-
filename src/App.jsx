@@ -37,6 +37,7 @@ const App = () => {
         <Route 
           path= "/pokemon/new" 
           element={<PokemonForm addPokemon={addPokemon} />} /> 
+          <Route path="" element= {<h2>nothing there</h2>} />;
       </Routes>
 
     </>
