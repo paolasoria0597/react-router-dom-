@@ -2,6 +2,11 @@
 import './App.css'
 import { useState } from 'react';
 import PokemonList from './components/PokemonList';
+import NavBar from './components/Navbar';
+import {Route, Routes} from 'react-router-dom';
+import PokemonDetails from './components/PokemonDetails';
+import PokemonForm from './components/PokemonForm';
+
 
 const initialState = [
   { _id: 1, name: 'bulbasaur', weight: 69, height: 7 },
@@ -13,12 +18,29 @@ const initialState = [
 
 const App = () => {
   const [pokemon, setPokemon] = useState(initialState);
+  const addPokemon= (newPokemonData) => {
+    newPokemonData._id =pokemon.length +1;
+    setPokemon([...pokemon, newPokemonData]); // you will take the old pokemon data use the spread operator and add the newPokemonData to the existing array 
+  };
+
   return (
     <>
+      
       <h1>Pokemon!</h1>
-      <PokemonList pokemon={pokemon} />
+      <NavBar />
+      <Routes>
+        <Route path= "/" element= {<h2>Home Page</h2>} />    
+        <Route path="/pokemon" element={<PokemonList pokemon={pokemon} />} /> 
+        <Route
+        path="/pokemon/:pokemonId"
+        element={<PokemonDetails pokemon={pokemon} />}/>
+        <Route 
+          path= "/pokemon/new" element={<PokemonForm />} />
+      </Routes>
+
     </>
   );
 };
 
 export default App;
+//element is what I want to show/render
