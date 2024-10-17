@@ -13,6 +13,8 @@ const PokemonForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    props.addPokemon(formData)
+    setFormData(initialState)
     // TODO : complete submit logic
   };
 
